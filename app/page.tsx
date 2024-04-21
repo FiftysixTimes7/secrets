@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -6,26 +7,29 @@ export default function Home() {
         {/* Header */}
         <header className="flex justify-between items-center py-4 px-8">
           <h1 className="text-xl font-bold">Secrets</h1>
-          <nav>
-            <ul className="flex space-x-4">
-              <li><a href="#">Write</a></li>
-              <li><a href="#">Share</a></li>
-              <li><div className="w-8 h-8 rounded-full bg-gray-300"></div></li>
-            </ul>
-          </nav>
+            <nav>
+                <ul className="flex space-x-4">
+                    <li><Link href="/login" className="button">Log In / Sign Up</Link></li>
+                    <li><a className="button" href="#">Write</a></li>
+                    <li><a className="button" href="#">Share</a></li>
+                    <li>
+                        <div className="w-8 h-8 rounded-full bg-gray-300"></div>
+                    </li>
+                </ul>
+            </nav>
         </header>
 
-        {/* Hero Section */}
-        <section className="text-center py-16">
-          <div className="container mx-auto">
-            <Image
-                src="/hero.jpg"
-                alt="Hero Image"
-                width={800}
-                height={400}
-            />
-          </div>
-        </section>
+          {/* Hero Section */}
+          <section className="text-center py-16">
+              <div className="container mx-auto">
+                  <Image
+                      src="/hero.jpg"
+                      alt="Hero Image"
+                      width={800}
+                      height={400}
+                  />
+              </div>
+          </section>
 
         {/* Description */}
         <section className="bg-gray-100 py-8 px-4">
