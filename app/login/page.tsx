@@ -1,12 +1,11 @@
 
 export default function Login(){
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const username = formData.get('username');
         const password = formData.get('password');
-
-        console.log("Login Attempt:", username, password);
 
         // Here you can add your logic to handle the login,
         // such as sending a request to your backend server.
