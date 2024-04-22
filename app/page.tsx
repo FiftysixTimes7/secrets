@@ -4,28 +4,13 @@ import Link from "next/link";
 export default function Home() {
   return (
       <div>
-        {/* Header */}
-        <header className="flex justify-between items-center py-4 px-8">
-          <h1 className="text-xl font-bold">Secrets</h1>
-            <nav>
-                <ul className="flex space-x-4">
-                    <li><Link href="/login" className="button">Log In / Sign Up</Link></li>
-                    <li><a className="button" href="#">Write</a></li>
-                    <li><a className="button" href="#">Share</a></li>
-                    <li>
-                        <div className="w-8 h-8 rounded-full bg-gray-300"></div>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-
           {/* Hero Section */}
           <section className="text-center py-16">
-              <div className="container mx-auto">
+              <div className="container mx-auto" style={{ display: 'flex', justifyContent: 'center' }}>
                   <Image
                       src="/hero.jpg"
                       alt="Hero Image"
-                      width={800}
+                      width={1000}
                       height={400}
                   />
               </div>
@@ -41,8 +26,8 @@ export default function Home() {
         </section>
 
         {/* Call to Action */}
-        <footer className="fixed bottom-0 right-0 p-8">
-          <button className="bg-blue-500 text-white py-3 px-6 rounded-lg">Start Journaling</button>
+        <footer className="fixed bottom-0 left-1/2 transform -translate-x-1/2 p-8">
+          <button className="bg-black text-white py-3 px-6 rounded-lg">Start Journaling</button>
         </footer>
       </div>
   );
