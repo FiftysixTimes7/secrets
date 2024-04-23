@@ -18,18 +18,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-    <body className={inter.className}>
+      <html lang="en">
+      <body>
       <header className="flex justify-between items-center py-4 px-8">
-        <Link href="/" className="hover:outline text-xl font-bold rounded-full bg-gray-800 bg-opacity-10 px-4 py-2">Secrets</Link>
-        <nav>
-          <ul className="flex space-x-4">
+        <Link href="/"
+              className="hover:outline text-xl font-bold rounded-full bg-gray-800 bg-opacity-10 px-4 py-2">Secrets</Link>
+        <nav className="pr-5">
+          <ul className="flex space-x-5">
             <li><Link href="/login" className="button">Log In / Sign Up</Link></li>
+            <li className="relative group">
+              <Link href="/Dashboard"
+                    className="inline-block text-white hover:outline bg-gray-800 w-10 h-10 rounded-full bg-opacity-50"></Link>
+              {/* Use group-hover on the parent li to maintain dropdown visibility while hovered */}
+              <div className="absolute hidden group-hover:block bg-white shadow-md rounded-md mt-1">
+                <ul className="text-gray-700">
+                  <li><a href="#" className="block px-4 py-2 hover:bg-gray-100">Account Info</a></li>
+                  <li><a href="#" className="block px-4 py-2 hover:bg-gray-100">Settings</a></li>
+                  <li><a href="#" className="block px-4 py-2 hover:bg-gray-100">Log Out</a></li>
+                </ul>
+              </div>
+            </li>
           </ul>
         </nav>
       </header>
       {children}
-    </body>
-    </html>
+      </body>
+      </html>
   );
 }
