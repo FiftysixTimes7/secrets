@@ -24,9 +24,9 @@ export async function getSecret(date: string) {
     return null;
 }
 
-export default async function Main(props: { date: string }) {
-    const secret = await getSecret(props.date);
-    console.log(props.date);
+export default async function Main({ params }: Readonly<{ params: { date: string } }>) {
+    const secret = await getSecret(params.date);
+    console.log(params.date);
     console.log(secret);
     return <p>{secret?.content ?? "Nothing"}</p>
 }
