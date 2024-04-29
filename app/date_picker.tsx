@@ -56,12 +56,12 @@ export function DatePicker() {
         }
     }
     return <>
-        <button className="px-3 pt-1 pb-1.5 hover:bg-gray-800 rounded-md tracking-tighter transition" onClick={dateChangeHandle("-y")}>&lt;&lt;&lt;</button>
-        <button className="px-3 pt-1 pb-1.5 hover:bg-gray-800 rounded-md tracking-tight transition" onClick={dateChangeHandle("-m")}>&lt;&lt;</button>
-        <button className="px-3 pt-1 pb-1.5 hover:bg-gray-800 rounded-md transition" onClick={dateChangeHandle("-d")}>&lt;</button>
+        <button className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md tracking-tighter transition" onClick={dateChangeHandle("-y")}>&lt;&lt;&lt;</button>
+        <button className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md tracking-tight transition" onClick={dateChangeHandle("-m")}>&lt;&lt;</button>
+        <button className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md transition" onClick={dateChangeHandle("-d")}>&lt;</button>
         <button className="bg-gray-200 hover:bg-white text-black m-2 p-1 px-3 rounded-md transition" title="Click to reset to today" onClick={dateChangeHandle()}>{date}</button>
-        <button className="px-3 pt-1 pb-1.5 hover:bg-gray-800 rounded-md transition" onClick={dateChangeHandle("+d")}>&gt;</button>
-        <button className="px-3 pt-1 pb-1.5 hover:bg-gray-800 rounded-md tracking-tight transition" onClick={dateChangeHandle("+m")}>&gt;&gt;</button>
-        <button className="px-3 pt-1 pb-1.5 hover:bg-gray-800 rounded-md tracking-tighter transition" onClick={dateChangeHandle("+y")}>&gt;&gt;&gt;</button>
+        <button className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md transition" onClick={dateChangeHandle("+d")}>&gt;</button>
+        <button className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md tracking-tight transition" onClick={dateChangeHandle("+m")}>&gt;&gt;</button>
+        <button className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md tracking-tighter transition" onClick={dateChangeHandle("+y")}>&gt;&gt;&gt;</button>
     </>
 }
