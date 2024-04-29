@@ -35,20 +35,10 @@ export default async function MainLayout({
                 newDate.setFullYear(parseInt(YYYY), parseInt(MM) - 1, parseInt(DD) + 1);
                 break;
         }
-        return newDate.toLocaleDateString('en-CA');
+        return "/" + newDate.toLocaleDateString('en-CA');
     }
     return <>
-        <div className="m-2 flex items-center justify-end">
-            <h1 className="text-xl">{session.user.name}&apos;s secrets</h1>
-            <form
-                action={async () => {
-                    "use server"
-                    await signOut();
-                }}
-            >
-                <button className="p-1 px-3 mx-3 border-2 border-white hover:bg-gray-800 rounded-md transition" type="submit">Sign Out</button>
-            </form>
-        </div>
+        <h1 className="text-xl p-1"><Link className='underline hover:text-gray-300' href={"/user"}>{session.user.name}</Link>&apos;s secrets</h1>
         <div className='m-3'>
             <Link className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md tracking-tighter transition" href={dateTarget("-y")}>&lt;&lt;&lt;</Link>
             <Link className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md tracking-tight transition" href={dateTarget("-m")}>&lt;&lt;</Link>

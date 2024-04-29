@@ -7,8 +7,8 @@ export default async function Home() {
   if (session?.user?.email)
     redirect(`/${new Date().toLocaleDateString("en-CA")}`);
   return <>
-    <Image src="/van.webp" alt="Van darkholme welcomes you." width={300} height={300} />
-    <form className="m-2"
+    <Image src="/van.webp" alt="Van darkholme welcomes you." width={300} height={300} className="m-auto" />
+    <form className="my-2 mx-auto w-80"
       action={async () => {
         "use server"
         await signIn("github", { redirectTo: "/" })
