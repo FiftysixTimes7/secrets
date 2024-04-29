@@ -18,6 +18,13 @@ async function getUser() {
     return null;
 }
 
+export async function getSecrets() {
+    const dbUser = await getUser();
+    if (dbUser)
+        return dbUser.secrets;
+    return null;
+}
+
 export async function getSecret(date: string) {
     const dbUser = await getUser();
     if (dbUser)
