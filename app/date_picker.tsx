@@ -1,11 +1,10 @@
 "use client"
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function DatePicker() {
     const router = useRouter();
-    const searchParams = useSearchParams();
     const [date, setDate] = useState(new Date().toLocaleDateString("en-CA"));
 
     function dateChangeHandle(mode?: string) {
