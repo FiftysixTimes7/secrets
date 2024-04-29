@@ -1,14 +1,18 @@
 import Image from "next/image";
 import { auth, signIn, signOut } from "@/auth"
 import { DatePicker } from "./date_picker";
+import Main from "./main";
 
-export default async function Home() {
+export default async function Home({ searchParams }: {
+  searchParams?: {
+    date?: string;
+  };
+}) {
   const session = await auth();
-
   return (
     <div className="flex h-screen">
       <div className="m-auto text-center">
-        {session?.user ?
+        {session?.user?.email ?
           <>
             <div className="flex items-center justify-end">
               <h1 className="text-xl">{session.user.name}&apos;s secrets</h1>
@@ -22,6 +26,7 @@ export default async function Home() {
               </form>
             </div>
             <DatePicker />
+            <Main date={searchParams?.date ?? new Date().toLocaleDateString("en-CA")} />
           </>
           :
           <>

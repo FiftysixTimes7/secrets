@@ -1,17 +1,22 @@
 "use client"
 
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export function DatePicker() {
-    const [date, setDate] = useState(new Date().toLocaleDateString('en-CA'));
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const [date, setDate] = useState(new Date().toLocaleDateString("en-CA"));
+
     function dateChangeHandle(mode?: string) {
         switch (mode) {
             case "-y":
                 return () => {
                     let newDate = new Date();
-                    let [YYYY, MM, DD] = date.split('-')
+                    let [YYYY, MM, DD] = date.split('-');
                     newDate.setFullYear(parseInt(YYYY) - 1, parseInt(MM) - 1, parseInt(DD));
                     setDate(newDate.toLocaleDateString('en-CA'));
+                    router.replace(`/?date=${newDate.toLocaleDateString('en-CA')}`);
                 }
             case "-m":
                 return () => {
@@ -19,6 +24,7 @@ export function DatePicker() {
                     let [YYYY, MM, DD] = date.split('-')
                     newDate.setFullYear(parseInt(YYYY), parseInt(MM) - 2, parseInt(DD));
                     setDate(newDate.toLocaleDateString('en-CA'));
+                    router.replace(`/?date=${newDate.toLocaleDateString('en-CA')}`);
                 }
             case "-d":
                 return () => {
@@ -26,6 +32,7 @@ export function DatePicker() {
                     let [YYYY, MM, DD] = date.split('-')
                     newDate.setFullYear(parseInt(YYYY), parseInt(MM) - 1, parseInt(DD) - 1);
                     setDate(newDate.toLocaleDateString('en-CA'));
+                    router.replace(`/?date=${newDate.toLocaleDateString('en-CA')}`);
                 }
             case "+y":
                 return () => {
@@ -33,6 +40,7 @@ export function DatePicker() {
                     let [YYYY, MM, DD] = date.split('-')
                     newDate.setFullYear(parseInt(YYYY) + 1, parseInt(MM) - 1, parseInt(DD));
                     setDate(newDate.toLocaleDateString('en-CA'));
+                    router.replace(`/?date=${newDate.toLocaleDateString('en-CA')}`);
                 }
             case "+m":
                 return () => {
@@ -40,6 +48,7 @@ export function DatePicker() {
                     let [YYYY, MM, DD] = date.split('-')
                     newDate.setFullYear(parseInt(YYYY), parseInt(MM), parseInt(DD));
                     setDate(newDate.toLocaleDateString('en-CA'));
+                    router.replace(`/?date=${newDate.toLocaleDateString('en-CA')}`);
                 }
             case "+d":
                 return () => {
@@ -47,11 +56,12 @@ export function DatePicker() {
                     let [YYYY, MM, DD] = date.split('-')
                     newDate.setFullYear(parseInt(YYYY), parseInt(MM) - 1, parseInt(DD) + 1);
                     setDate(newDate.toLocaleDateString('en-CA'));
+                    router.replace(`/?date=${newDate.toLocaleDateString('en-CA')}`);
                 }
             default:
                 return () => {
-                    let newDate = new Date();
-                    setDate(newDate.toLocaleDateString('en-CA'));
+                    setDate(new Date().toLocaleDateString('en-CA'));
+                    router.replace(`/`);
                 }
         }
     }
