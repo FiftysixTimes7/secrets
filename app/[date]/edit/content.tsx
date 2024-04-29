@@ -9,6 +9,7 @@ export default function Content({ defaultContent, handleSave, handleDelete }: { 
         return ret;
     }
     return <div className='flex flex-col items-center'>
+        <textarea id='content' className='my-1 bg-black text-white p-2 border-2 rounded-md w-3/4 h-auto' rows={defaultContent.split('\n').length} defaultValue={defaultContent}></textarea>
         <div className='flex justify-center'>
             <button className="flex justify-center p-2 pl-2.5 pb-2.5 transition fill-gray-400 hover:fill-white" onClick={makeHandle(handleSave)}>
                 <svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewBox="0 0 448 512">
@@ -23,6 +24,5 @@ export default function Content({ defaultContent, handleSave, handleDelete }: { 
                 </svg>
             </button>
         </div>
-        <textarea id='content' className='my-1 bg-black text-white p-2 border-2 rounded-md w-3/4' rows={20} defaultValue={defaultContent}></textarea>
     </div>
 }

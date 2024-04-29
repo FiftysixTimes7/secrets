@@ -1,6 +1,6 @@
 import Link from 'next/link';
+import { auth } from "@/auth"
 import { redirect } from 'next/navigation';
-import { auth, signOut } from "@/auth"
 
 export default async function MainLayout({
     params,
@@ -35,11 +35,12 @@ export default async function MainLayout({
                 newDate.setFullYear(parseInt(YYYY), parseInt(MM) - 1, parseInt(DD) + 1);
                 break;
         }
-        return "/" + newDate.toLocaleDateString('en-CA');
+        return `/${newDate.toLocaleDateString('en-CA')}`;
     }
-    return <>
+    return <div className='flex flex-col h-full'>
         <h1 className="text-xl p-1"><Link className='underline hover:text-gray-300' href={"/user"}>{session.user.name}</Link>&apos;s secrets</h1>
-        <div className='m-3'>
+        {children}
+        <div className='mt-auto p-5'>
             <Link className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md tracking-tighter transition" href={dateTarget("-y")}>&lt;&lt;&lt;</Link>
             <Link className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md tracking-tight transition" href={dateTarget("-m")}>&lt;&lt;</Link>
             <Link className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md transition" href={dateTarget("-d")}>&lt;</Link>
@@ -48,6 +49,5 @@ export default async function MainLayout({
             <Link className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md tracking-tight transition" href={dateTarget("+m")}>&gt;&gt;</Link>
             <Link className="px-3 pt-1.5 pb-2 text-sm hover:bg-gray-800 rounded-md tracking-tighter transition" href={dateTarget("+y")}>&gt;&gt;&gt;</Link>
         </div>
-        {children}
-    </>
+    </div>
 }

@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex h-screen">
-          <div className="m-auto mt-10 text-center flex-initial basis-1/3">
+          <div className="mx-auto text-center flex-initial basis-1/3 h-full">
             {children}
           </div>
         </div>
