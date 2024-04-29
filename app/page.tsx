@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { auth, signIn, signOut } from "@/auth"
+import { DatePicker } from "./date_picker";
 
 export default async function Home() {
   const session = await auth();
@@ -8,14 +9,20 @@ export default async function Home() {
     <div className="flex h-screen">
       <div className="m-auto text-center">
         {session?.user ?
-          <form
-            action={async () => {
-              "use server"
-              await signOut();
-            }}
-          >
-            <button type="submit">{session.expires}, {session.user.email}, {session.user.id}, {session.user.image}, {session.user.name}</button>
-          </form>
+          <>
+            <div className="flex items-center justify-end">
+              <h1 className="font- text-xl">{session.user.name}&apos;s secrets</h1>
+              <form
+                action={async () => {
+                  "use server"
+                  await signOut();
+                }}
+              >
+                <button className="p-1 px-3 mx-3 border-2 border-white hover:bg-gray-800 rounded-md transition" type="submit">Sign Out</button>
+              </form>
+            </div>
+            <DatePicker />
+          </>
           :
           <>
             <Image src="/van.webp" alt="Van darkholme welcomes you." width={300} height={300} />
