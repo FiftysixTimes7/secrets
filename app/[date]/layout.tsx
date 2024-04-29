@@ -13,46 +13,29 @@ export default async function MainLayout({
     if (!session?.user?.email)
         redirect("/");
     function dateTarget(mode?: string) {
+        let newDate = new Date();
+        let [YYYY, MM, DD] = params.date.split('-');
         switch (mode) {
-            case "-y": {
-                let newDate = new Date();
-                let [YYYY, MM, DD] = params.date.split('-');
+            case "-y":
                 newDate.setFullYear(parseInt(YYYY) - 1, parseInt(MM) - 1, parseInt(DD));
-                return newDate.toLocaleDateString('en-CA');
-            }
-            case "-m": {
-                let newDate = new Date();
-                let [YYYY, MM, DD] = params.date.split('-');
+                break;
+            case "-m":
                 newDate.setFullYear(parseInt(YYYY), parseInt(MM) - 2, parseInt(DD));
-                return newDate.toLocaleDateString('en-CA');
-            }
-            case "-d": {
-                let newDate = new Date();
-                let [YYYY, MM, DD] = params.date.split('-');
+                break;
+            case "-d":
                 newDate.setFullYear(parseInt(YYYY), parseInt(MM) - 1, parseInt(DD) - 1);
-                return newDate.toLocaleDateString('en-CA');
-            }
-            case "+y": {
-                let newDate = new Date();
-                let [YYYY, MM, DD] = params.date.split('-');
+                break;
+            case "+y":
                 newDate.setFullYear(parseInt(YYYY) + 1, parseInt(MM) - 1, parseInt(DD));
-                return newDate.toLocaleDateString('en-CA');
-            }
-            case "+m": {
-                let newDate = new Date();
-                let [YYYY, MM, DD] = params.date.split('-');
+                break;
+            case "+m":
                 newDate.setFullYear(parseInt(YYYY), parseInt(MM), parseInt(DD));
-                return newDate.toLocaleDateString('en-CA');
-            }
-            case "+d": {
-                let newDate = new Date();
-                let [YYYY, MM, DD] = params.date.split('-');
+                break;
+            case "+d":
                 newDate.setFullYear(parseInt(YYYY), parseInt(MM) - 1, parseInt(DD) + 1);
-                return newDate.toLocaleDateString('en-CA');
-            }
-            default:
-                return new Date().toLocaleDateString('en-CA');
+                break;
         }
+        return newDate.toLocaleDateString('en-CA');
     }
     return <>
         <div className="m-2 flex items-center justify-end">
