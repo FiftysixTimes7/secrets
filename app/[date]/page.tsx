@@ -1,10 +1,27 @@
 import Link from 'next/link';
-import { getSecret } from '../util';
+import { getSecret, getSecrets } from '../util';
+import Search from './search';
 
-export default async function Main({ params }: Readonly<{ params: { date: string } }>) {
+export default async function Main({ params, searchParams }: Readonly<{
+    params: { date: string },
+    searchParams?: {
+        query?: string;
+    };
+}>) {
     const secret = await getSecret(params.date);
+    const query = searchParams?.query ?? '';
+    let secretList, htmlList;
+    if (query) {
+        secretList = await getSecrets();
+        secretList = secretList?.filter(i => i.content.includes(query));
+        htmlList = secretList?.map(s => <li key={s.date}><Link href={`/${s.date}${query ? `?query=${query}` : ''}`} className='w-full'><b>{s.date}</b>: {s.content}</Link></li>);
+    }
     return <div className='flex flex-col items-center'>
-        {secret?.content ? <div className='text-left my-1 whitespace-pre w-5/6'>{secret.content}</div> : <p className='mt-1 mb-6'>Nothing</p>}
+        <div className='group'>
+            <Search />
+            {query ? <ul className='absolute hidden group-focus-within:block focus-within:block hover:block top-20 w-1/4 rounded-md border border-gray-200 py-[9px] text-sm outline-2 bg-black z-10 min-w-60'>{htmlList}</ul> : <></>}
+        </div>
+        {secret?.content ? <div className='text-left my-1 whitespace-pre w-5/6'>{secret.content}</div> : <i className='mt-1 mb-6'>Nothing</i>}
         {secret?.updatedAt ? <p className='ml-auto text-sm text-gray-500 mt-2'>Last edit: {secret.updatedAt.toLocaleString()}</p> : <></>}
         <Link className="relative flex justify-center p-2 pl-2.5 pb-2.5 transition fill-gray-400 hover:fill-white -top-7" href={`/${params.date}/edit`}>
             <svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewBox="0 0 512 512">
